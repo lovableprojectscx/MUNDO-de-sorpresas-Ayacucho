@@ -157,7 +157,7 @@ const CatalogPage = () => {
               >
                 {/* Image */}
                 <div className="relative overflow-hidden">
-                  <motion.img
+                   <motion.img
                     src={product.image}
                     alt={product.title}
                     className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
@@ -165,6 +165,7 @@ const CatalogPage = () => {
                     decoding="async"
                     width={800}
                     height={800}
+                    onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/800x600?text=Imagen+No+Disponible')}
                   />
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
