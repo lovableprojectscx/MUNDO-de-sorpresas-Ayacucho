@@ -54,7 +54,7 @@ const ContactSection = () => {
             {/* Social Icons Compact */}
             <div className="flex justify-center gap-6 pt-6 border-t border-gray-100">
               {[
-                { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/share/r/1ZjPxG3D27/" },
+                { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61556748039386" },
                 { icon: Instagram, label: "Instagram", href: "#" },
               ].map(({ icon: Icon, label, href }) => (
                 <motion.a
