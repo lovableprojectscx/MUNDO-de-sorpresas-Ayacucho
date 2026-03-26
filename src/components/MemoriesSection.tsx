@@ -11,42 +11,42 @@ import productoSerenata from "@/assets/producto-serenata.jpg";
 const memories = [
   { 
     id: 1, 
-    src: "/recuerdos/sorpresas-ayacucho-entrega-especial.jpg", 
+    src: "/recuerdos/sorpresas-ayacucho-entrega-especial.webp", 
     title: "Feliz 60 Cumpleaños!", 
     alt: "Entrega especial de cumpleaños número 60 en Ayacucho",
     span: "md:col-span-2 md:row-span-2" 
   },
   { 
     id: 2, 
-    src: "/recuerdos/desayunos-sorpresa-ayacucho-cumpleanos.jpg", 
+    src: "/recuerdos/desayunos-sorpresa-ayacucho-cumpleanos.webp", 
     title: "Cumpleaños Feliz", 
     alt: "Desayunos sorpresa a domicilio para cumpleaños en Ayacucho",
     span: "md:col-span-1 md:row-span-1" 
   },
   { 
     id: 3, 
-    src: "/recuerdos/mundo-de-sorpresas-ayacucho-arreglos-florales.jpg", 
+    src: "/recuerdos/mundo-de-sorpresas-ayacucho-arreglos-florales.webp", 
     title: "Detalle de Aniversario", 
     alt: "Mundo de Sorpresas Ayacucho: Arreglos florales exclusivos y detalles de aniversario",
     span: "md:col-span-1 md:row-span-1" 
   },
   { 
     id: 4, 
-    src: "/recuerdos/detalles-romanticos-ayacucho.jpg", 
+    src: "/recuerdos/detalles-romanticos-ayacucho.webp", 
     title: "Cumpleaños Especial", 
     alt: "Sorpresa de cumpleaños para adultos mayores en Ayacucho",
     span: "md:col-span-1 md:row-span-2" 
   },
   { 
     id: 5, 
-    src: "/recuerdos/sorpresas-a-domicilio-ayacucho-peluches.jpg", 
+    src: "/recuerdos/sorpresas-a-domicilio-ayacucho-peluches.webp", 
     title: "Entrega Sorpresa", 
     alt: "Peluches gigantes y sorpresas a domicilio en la ciudad de Ayacucho",
     span: "md:col-span-1 md:row-span-1" 
   },
   { 
     id: 6, 
-    src: "/recuerdos/regalos-personalizados-ayacucho-aniversario.jpg", 
+    src: "/recuerdos/regalos-personalizados-ayacucho-aniversario.webp", 
     title: "Detalle Inolvidable", 
     alt: "Regalos personalizados y sorpresas de aniversario en Ayacucho",
     span: "md:col-span-1 md:row-span-1" 

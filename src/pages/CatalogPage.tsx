@@ -39,11 +39,12 @@ const CatalogPage = () => {
         {/* Background Image - High Impact & Visibility */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/portada-catalogo-ayacucho.png" 
+            src="/portada-catalogo-ayacucho.webp"
             alt="Mundo de Sorpresas Ayacucho" 
             className="w-full h-full object-cover opacity-90"
             fetchPriority="high"
             decoding="sync"
+            loading="eager"
           />
           {/* Overlay oscuro sutil (elimina la molesta niebla blanca de 'to-background') */}
           <div className="absolute inset-0 bg-black/20" />

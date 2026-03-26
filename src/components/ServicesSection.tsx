@@ -9,7 +9,7 @@ const services = [
   {
     title: "Show de Ositos Tunanteros",
     description: "La tradición y la alegría se unen. Nuestro Osito Tunantero llega bailando para entregar tu regalo y crear un recuerdo verdaderamente inolvidable.",
-    image: "/show-ositos-tunanteros-ayacucho.png",
+    image: "/show-ositos-tunanteros-ayacucho.webp",
     cta: "Quiero el Show",
     link: `${WHATSAPP_BASE}?text=${encodeURIComponent("Hola Mundo Sorpresas, quiero contratar el show del Osito Tunantero")}`,
     icon: Heart,
