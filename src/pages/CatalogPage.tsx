@@ -34,21 +34,21 @@ const CatalogPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Epic Header - Clean & Immersive Version */}
-      <div className="relative overflow-hidden flex flex-col items-center justify-center pt-20 pb-16 sm:pt-24 sm:pb-24 px-4 bg-zinc-950">
+      {/* Epic Header - Clean & Immersive Version (Match Hero light theme) */}
+      <div className="relative overflow-hidden flex flex-col items-center justify-center pt-20 pb-16 sm:pt-24 sm:pb-24 px-4 bg-background">
         {/* Background Image - High Impact & Visibility */}
         <div className="absolute inset-0 z-0">
           <img 
             src="/portada-catalogo-ayacucho.webp"
             alt="Mundo de Sorpresas Ayacucho" 
-            className="w-full h-full object-cover opacity-90"
+            className="w-full h-full object-cover opacity-80"
             fetchPriority="high"
             decoding="sync"
             loading="eager"
           />
-          {/* Overlay oscuro sutil (elimina la molesta niebla blanca de 'to-background') */}
-          <div className="absolute inset-0 bg-black/20" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-transparent" />
+          {/* Overlay claro para mantener consistencia con el inicio */}
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-white/30" />
         </div>
 
         {/* Floating particles - subtle accent */}
