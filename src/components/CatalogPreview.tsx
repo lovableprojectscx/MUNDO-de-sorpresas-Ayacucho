@@ -58,7 +58,15 @@ const CatalogPreview = () => {
               </div>
               <div className="p-3 sm:p-4 text-center">
                 <h3 className="font-display text-sm sm:text-lg font-bold text-foreground line-clamp-1">{product.title}</h3>
-                <p className="font-body font-bold text-accent text-base sm:text-lg">{product.price}</p>
+                <p className="font-body font-bold text-accent text-base sm:text-lg mb-3">{product.price}</p>
+                <a
+                  href={`https://wa.me/51966655150?text=${encodeURIComponent(`¡Hola! Me interesa el producto: ${product.title}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-full py-2 px-4 rounded-xl bg-primary/10 text-primary font-body font-bold text-xs sm:text-sm hover:bg-primary hover:text-white transition-all duration-300 border border-primary/20"
+                >
+                  Pedir ahora
+                </a>
               </div>
             </motion.div>
           ))}
