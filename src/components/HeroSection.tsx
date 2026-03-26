@@ -12,7 +12,7 @@ const HeroSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/fondo-principal-mundo-sorpresas.jpg"
+          src="/premium-gift-bg.webp"
           alt="Mundo de Sorpresas Ayacucho - Regalos y Detalles Personalizados Premium"
           className="w-full h-full object-cover scale-105"
           width={1920}
