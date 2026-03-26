@@ -10,6 +10,8 @@ import NotFound from "./pages/NotFound.tsx";
 
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollToTop from "@/components/ScrollToTop";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         <WhatsAppButton />
+        <Analytics />
+        <SpeedInsights />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
