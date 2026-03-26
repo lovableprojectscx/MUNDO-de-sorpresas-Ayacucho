@@ -66,7 +66,7 @@ const CatalogPage = () => {
         <div className="relative z-10 container max-w-4xl mx-auto text-center pt-2 sm:pt-10">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-white/90 hover:text-white mb-6 sm:mb-10 font-body transition-all group text-xs sm:text-sm px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md border border-white/20 shadow-lg hover:-translate-y-1"
+            className="inline-flex items-center gap-2 text-slate-800 hover:text-black mb-6 sm:mb-10 font-body transition-all group text-xs sm:text-sm px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/40 hover:bg-white/60 backdrop-blur-md border border-white/40 shadow-sm hover:-translate-y-1"
           >
             <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-x-1" />
             Volver a la tienda
