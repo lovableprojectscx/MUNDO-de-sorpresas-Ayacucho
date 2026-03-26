@@ -3,16 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Local y Pre-Carga de Recursos LCP (Máximo Rendimiento) -->
-    <link rel="preload" as="image" href="/premium-gift-bg.png" fetchpriority="high">
+
+    <!-- Preconnect a orígenes críticos para reducir latencia de red -->
+    <link rel="preconnect" href="https://tbtmrujpxitvksvntjpx.supabase.co" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload LCP (imagen crítica del Hero) - máxima prioridad -->
+    <link rel="preload" as="image" href="/fondo-principal-mundo-sorpresas.jpg" fetchpriority="high" type="image/jpeg">
     <link rel="preload" as="image" href="/logo-mundo-sorpresas.png" fetchpriority="high">
-    
+
+    <!-- Google Fonts con font-display:swap para no bloquear renderizado -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;600;700&display=swap"></noscript>
+
+    <!-- SEO Principal -->
     <title>Sorpresas Ayacucho | Regalos a Domicilio y Osito Tunantero</title>
     <meta name="description" content="Las mejores Sorpresas y Regalos a domicilio en Ayacucho. Encuentra ramos buchones, desayunos sorpresa, chocolates y nuestro famoso show del Osito Tunantero." />
     <meta name="keywords" content="Sorpresas Ayacucho, regalos ayacucho, regalos a domicilio ayacucho, osito tunantero ayacucho, ramos buchones ayacucho, detalles a domicilio ayacucho, floreria ayacucho, cajas sorpresa" />
     <meta name="author" content="Mundo de Sorpresas Ayacucho" />
-    
+
     <!-- Open Graph (Facebook, WhatsApp) -->
     <meta property="og:title" content="Mundo de Sorpresas Ayacucho | Regalos a Domicilio" />
     <meta property="og:description" content="El mejor servicio de regalos sorpresa, ramos y shows en vivo (Osito Tunantero) en todo Ayacucho. Haz que su día sea inolvidable." />

@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import heroBg from "@/assets/hero-bg.jpg";
 import { Gift } from "lucide-react";
 
 const HeroSection = () => {
@@ -13,13 +12,14 @@ const HeroSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/premium-gift-bg.png"
+          src="/fondo-principal-mundo-sorpresas.jpg"
           alt="Mundo de Sorpresas Ayacucho - Regalos y Detalles Personalizados Premium"
           className="w-full h-full object-cover scale-105"
           width={1920}
           height={1080}
           fetchPriority="high"
           decoding="sync"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px]" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-white/30" />
@@ -48,6 +48,10 @@ const HeroSection = () => {
               src="/logo-mundo-sorpresas.png" 
               alt="Mundo de Sorpresas Ayacucho Logo Principal - Envíos a Domicilio" 
               className="w-[85%] sm:w-auto h-auto sm:h-40 md:h-56 lg:h-64 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:scale-[1.02] transition-transform duration-500"
+              fetchPriority="high"
+              loading="eager"
+              width={600}
+              height={256}
             />
           </h1>
 
