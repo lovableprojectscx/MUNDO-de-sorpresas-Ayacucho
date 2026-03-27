@@ -140,7 +140,7 @@ const CatalogPage = () => {
           {active !== "Todo" && <> en <span className="font-semibold text-accent">{active}</span></>}
         </motion.p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
           <AnimatePresence mode="popLayout">
             {filtered.map((product, i) => (
               <motion.div
@@ -154,11 +154,11 @@ const CatalogPage = () => {
                 onClick={() => setSelectedProduct(product)}
               >
                 {/* Image */}
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden aspect-[4/5] sm:aspect-[4/3]">
                    <motion.img
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                     decoding="async"
                     width={800}
@@ -174,7 +174,7 @@ const CatalogPage = () => {
 
                   {product.offerPrice && (
                     <motion.span
-                      className="absolute top-3 right-3 flex items-center gap-1 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-body font-bold"
+                      className="absolute top-2 right-2 flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-secondary/90 backdrop-blur-md text-white text-[10px] sm:text-xs font-body font-bold shadow-sm"
                       initial={{ rotate: -12 }}
                       animate={{ rotate: [0, -5, 0] }}
                       transition={{ duration: 2, repeat: Infinity }}
@@ -185,44 +185,47 @@ const CatalogPage = () => {
                   )}
 
                   {/* Rating */}
-                  <div className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-foreground/70 backdrop-blur-sm">
+                  <div className="absolute top-2 left-2 flex items-center gap-1 px-2 py-1 rounded-full bg-foreground/50 backdrop-blur-md shadow-sm border border-white/10">
                     <Star className="w-3 h-3 fill-gold text-gold" />
-                    <span className="text-xs font-body font-semibold text-primary-foreground">{product.rating}</span>
+                    <span className="text-[10px] sm:text-xs font-body font-semibold text-white drop-shadow-sm">{product.rating}</span>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-5">
-                  <h3 className="font-display text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
-                    {product.title}
-                  </h3>
-                  <p className="font-body text-sm text-muted-foreground mb-3 line-clamp-2">
-                    {product.description}
-                  </p>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      {product.offerPrice ? (
-                        <>
-                          <span className="font-body font-bold text-2xl text-accent">S/{product.offerPrice}</span>
-                          <span className="font-body text-sm text-muted-foreground line-through">S/{product.price}</span>
-                        </>
-                      ) : (
-                        <span className="font-body font-bold text-2xl text-foreground">S/{product.price}</span>
-                      )}
+                <div className="p-3 sm:p-5 flex flex-col justify-between flex-grow">
+                  <div>
+                    <h3 className="font-display text-sm sm:text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-1 sm:line-clamp-2">
+                      {product.title}
+                    </h3>
+                    <p className="font-body text-xs sm:text-sm text-muted-foreground mb-3 line-clamp-2 hidden sm:block">
+                      {product.description}
+                    </p>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-1">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                        {product.offerPrice ? (
+                          <>
+                            <span className="font-body font-bold text-lg sm:text-2xl text-accent leading-none">S/{product.offerPrice}</span>
+                            <span className="font-body text-[10px] sm:text-sm text-muted-foreground line-through leading-none">S/{product.price}</span>
+                          </>
+                        ) : (
+                          <span className="font-body font-bold text-lg sm:text-2xl text-foreground leading-none">S/{product.price}</span>
+                        )}
+                      </div>
+                      <span className={`text-[10px] sm:text-xs font-body font-semibold ${getStockColor(product.stock)}`}>
+                        {product.stock}
+                      </span>
                     </div>
-                    <span className={`text-xs font-body font-semibold ${getStockColor(product.stock)}`}>
-                      {product.stock}
-                    </span>
                   </div>
                   <a
                     href={getWhatsappLink(product.title)}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full gradient-cta text-accent-foreground font-body font-semibold text-sm shadow-cta hover:scale-105 transition-transform"
+                    className="w-full inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-5 sm:py-3 rounded-full bg-primary/10 text-primary font-body font-bold text-xs sm:text-sm hover:bg-primary hover:text-white transition-all duration-300 border border-primary/20"
                   >
-                    <MessageCircle className="w-4 h-4" />
-                    Pedir por WhatsApp
+                    <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Pedir por WhatsApp</span>
+                    <span className="sm:hidden">Pedir</span>
                   </a>
                 </div>
               </motion.div>

@@ -65,38 +65,43 @@ const CatalogPreview = () => {
                   <img
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-36 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                     width={800}
                     height={800}
                     onError={(e) => (e.currentTarget.src = '/placeholder.svg')}
                   />
                   {product.offerPrice && (
-                    <span className="absolute top-2 right-2 text-[10px] font-bold bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full">
+                    <span className="absolute top-2 right-2 flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-secondary/90 backdrop-blur-md text-white text-[10px] sm:text-xs font-body font-bold shadow-sm">
                       OFERTA
                     </span>
                   )}
                 </div>
-                <div className="p-3 sm:p-4 text-center">
-                  <h3 className="font-display text-sm sm:text-lg font-bold text-foreground line-clamp-1">{product.title}</h3>
-                  <div className="flex items-center justify-center gap-2 mb-3">
-                    {product.offerPrice ? (
-                      <>
-                        <p className="font-body font-bold text-accent text-base sm:text-lg">S/{product.offerPrice}</p>
-                        <p className="font-body text-muted-foreground text-sm line-through">S/{product.price}</p>
-                      </>
-                    ) : (
-                      <p className="font-body font-bold text-accent text-base sm:text-lg">S/{product.price}</p>
-                    )}
+                <div className="p-3 sm:p-5 flex flex-col justify-between flex-grow">
+                  <div>
+                    <h3 className="font-display text-sm sm:text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-1 sm:line-clamp-2">
+                      {product.title}
+                    </h3>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-center gap-1 sm:gap-2 mb-3 sm:mb-4">
+                      {product.offerPrice ? (
+                        <>
+                          <p className="font-body font-bold text-accent text-lg sm:text-2xl leading-none">S/{product.offerPrice}</p>
+                          <p className="font-body text-muted-foreground text-[10px] sm:text-sm line-through leading-none">S/{product.price}</p>
+                        </>
+                      ) : (
+                        <p className="font-body font-bold text-foreground text-lg sm:text-2xl leading-none">S/{product.price}</p>
+                      )}
+                    </div>
                   </div>
                   <a
                     href={`${WHATSAPP_BASE}?text=${encodeURIComponent(`¡Hola! Me interesa el producto: ${product.title}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-4 rounded-xl bg-primary/10 text-primary font-body font-bold text-xs sm:text-sm hover:bg-primary hover:text-white transition-all duration-300 border border-primary/20"
+                    className="inline-flex items-center justify-center gap-1.5 sm:gap-2 w-full py-2 px-3 sm:px-4 rounded-full bg-primary/10 text-primary font-body font-bold text-xs sm:text-sm hover:bg-primary hover:text-white transition-all duration-300 border border-primary/20"
                   >
-                    <MessageCircle className="w-3.5 h-3.5" />
-                    Pedir ahora
+                    <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Pedir ahora</span>
+                    <span className="sm:hidden">Pedir</span>
                   </a>
                 </div>
               </motion.div>
