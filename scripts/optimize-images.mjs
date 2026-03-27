@@ -27,11 +27,12 @@ const RULES = [
   { match: (f) => f.includes('logo') || f.includes('icon'), width: 600, quality: 90, effort: 6 },
   // Premium gift bg (pequeño fondo decorativo)
   { match: (f) => f.includes('premium-gift'), width: 1280, quality: 82, effort: 6 },
-  // Show de ositos / imágenes de servicios (se muestran a ~400px)
-  { match: (f) => f.includes('show-ositos') || f.includes('detalles-regalo'), width: 800, quality: 82, effort: 6 },
-  // Galería de recuerdos - se muestran en grid a máx 400px en desktop
-  // 2x retina = 800px es SUFICIENTE (antes eran 3000px+!)
-  { match: (f) => f.includes('recuerdos'), width: 800, quality: 78, effort: 6 },
+  // Show de ositos / imágenes de servicios (se muestran a ~333px en móvil)
+  // 2x retina = 500px es suficiente, antes eran 800px (innecesario)
+  { match: (f) => f.includes('show-ositos') || f.includes('detalles-regalo'), width: 500, quality: 80, effort: 6 },
+  // Galería de recuerdos - se muestran en grid a máx 280px en móvil
+  // 2x retina = 400px basta (antes estaban en 800px consumiendo el doble)
+  { match: (f) => f.includes('recuerdos'), width: 400, quality: 72, effort: 6 },
   // Default para cualquier otra imagen
   { match: () => true, width: 1280, quality: 80, effort: 5 },
 ];
