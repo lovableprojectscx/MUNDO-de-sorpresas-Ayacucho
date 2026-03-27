@@ -151,11 +151,18 @@ const AdminPage = () => {
       return;
     }
 
+    // Construir payload con offerPrice siempre incluido como key
+    // Si no hay oferta, se envía undefined para que el store lo detecte y ponga null en supabase
+    const payload = {
+      ...formData,
+      offerPrice: hasOffer ? (formData.offerPrice ?? undefined) : undefined,
+    };
+
     if (editingProduct) {
-      updateProduct(editingProduct.id, formData);
+      updateProduct(editingProduct.id, payload);
       toast.success("Producto actualizado correctamente.");
     } else {
-      addProduct(formData as Omit<Product, "id">);
+      addProduct(payload as Omit<Product, "id">);
       toast.success("¡Nuevo producto agregado al catálogo!");
     }
     setIsModalOpen(false);

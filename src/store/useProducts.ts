@@ -20,7 +20,7 @@ const mapProductFromDB = (data: any): Product => ({
   id: data.id,
   title: data.title,
   price: data.price,
-  offerPrice: data.offer_price || undefined,
+  offerPrice: data.offer_price != null ? data.offer_price : undefined,
   category: data.category || [],
   stock: data.stock,
   image: data.image,
@@ -117,7 +117,10 @@ class ProductStore {
     const payload: any = {};
     if (updatedFields.title !== undefined) payload.title = updatedFields.title;
     if (updatedFields.price !== undefined) payload.price = updatedFields.price;
-    if (updatedFields.offerPrice !== undefined) payload.offer_price = updatedFields.offerPrice || null;
+    // IMPORTANTE: Usar 'in' en vez de '!== undefined'
+    // para detectar cuando la oferta se desactiva (offerPrice === undefined)
+    // y poder enviar offer_price: null a Supabase correctamente.
+    if ('offerPrice' in updatedFields) payload.offer_price = updatedFields.offerPrice ?? null;
     if (updatedFields.category !== undefined) payload.category = updatedFields.category;
     if (updatedFields.stock !== undefined) payload.stock = updatedFields.stock;
     if (updatedFields.image !== undefined) payload.image = updatedFields.image;
