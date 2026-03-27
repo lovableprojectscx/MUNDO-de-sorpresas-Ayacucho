@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Camera, ZoomIn, X } from "lucide-react";
-import productoRosas from "@/assets/producto-rosas.jpg";
-import productoChocolates from "@/assets/producto-chocolates.jpg";
-import productoGlobos from "@/assets/producto-globos.jpg";
-import productoCanasta from "@/assets/producto-canasta.jpg";
-import productoSerenata from "@/assets/producto-serenata.jpg";
 
 // Array de memorias optimizadas para SEO (Mundo de Sorpresas Ayacucho)
 const memories = [

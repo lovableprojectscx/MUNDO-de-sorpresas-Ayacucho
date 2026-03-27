@@ -45,7 +45,7 @@ const HeroSection = () => {
           <h1 className="mb-6 md:mb-10 w-full flex justify-center">
             <span className="sr-only">Sorpresas Ayacucho - Regalos a Domicilio y Osito Tunantero</span>
             <img 
-              src="/logo-mundo-sorpresas.png" 
+              src="/logo-mundo-sorpresas.webp" 
               alt="Mundo de Sorpresas Ayacucho Logo Principal - Envíos a Domicilio" 
               className="w-[85%] sm:w-auto h-auto sm:h-40 md:h-56 lg:h-64 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:scale-[1.02] transition-transform duration-500"
               fetchPriority="high"

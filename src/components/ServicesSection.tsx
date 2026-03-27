@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import detallesImg from "@/assets/detalles-regalo.png";
 import { MessageCircle, Heart, Wand2 } from "lucide-react";
 
 const WHATSAPP_BASE = "https://wa.me/51931489389";
@@ -18,7 +17,7 @@ const services = [
   {
     title: "Detalles que Enamoran",
     description: "Ramos buchon, box de rosas, chocolates y globos burbuja. Diseñamos regalos premium personalizados para robar más de un suspiro.",
-    image: detallesImg,
+    image: "/detalles-regalo.webp",
     cta: "Explorar Catálogo",
     link: "/catalogo",
     icon: MessageCircle,

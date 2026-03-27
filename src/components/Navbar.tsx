@@ -134,7 +134,7 @@ const Navbar = () => {
             exit="exit"
             // will-change: opacity es la única propiedad que cambia → GPU la maneja sola
             style={{ willChange: "opacity" }}
-            className="fixed inset-0 z-40 bg-zinc-950/98 flex flex-col justify-center px-8 lg:hidden"
+            className="fixed inset-0 z-[100] bg-zinc-950/95 backdrop-blur-sm flex flex-col justify-center px-8 lg:hidden"
           >
             <div className="flex flex-col gap-6 sm:gap-8 w-full max-w-sm mx-auto">
               {navLinks.map((link, i) => {
