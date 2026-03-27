@@ -36,7 +36,6 @@ const ContactSection = () => {
                 <p className="font-display font-bold text-foreground text-lg">Central de Pedidos</p>
                 <div className="flex flex-wrap gap-x-4">
                   <a href="tel:+51931489389" className="font-body text-lg text-muted-foreground hover:text-primary transition-colors font-semibold">931 489 389</a>
-                  <a href="tel:+51938573651" className="font-body text-lg text-muted-foreground hover:text-primary transition-colors font-semibold">938 573 651</a>
                 </div>
               </div>
             </div>
