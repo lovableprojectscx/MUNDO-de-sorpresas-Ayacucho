@@ -102,36 +102,72 @@ const AdminPage = () => {
     setIsModalOpen(true);
   };
 
+  // Convierte cualquier imagen (HEIC, JPG, PNG, etc.) a WebP usando Canvas API del navegador
+  const convertToWebP = (file: File, maxPx = 800, quality = 0.82): Promise<Blob> => {
+    return new Promise((resolve, reject) => {
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => {
+        // Calcular dimensiones respetando aspect ratio
+        let { width, height } = img;
+        if (width > maxPx || height > maxPx) {
+          if (width > height) {
+            height = Math.round((height / width) * maxPx);
+            width = maxPx;
+          } else {
+            width = Math.round((width / height) * maxPx);
+            height = maxPx;
+          }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) { reject(new Error('Canvas no disponible')); return; }
+        ctx.drawImage(img, 0, 0, width, height);
+        canvas.toBlob((blob) => {
+          URL.revokeObjectURL(url);
+          if (blob) resolve(blob);
+          else reject(new Error('Error al convertir imagen'));
+        }, 'image/webp', quality);
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('No se pudo cargar la imagen')); };
+      img.src = url;
+    });
+  };
+
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (file.size > 2 * 1024 * 1024) {
-      toast.error("La imagen es muy pesada (mayor a 2MB). Por favor, comprímela antes de subirla.");
-      return;
-    }
-
     setIsUploading(true);
-    const toastId = toast.loading("Subiendo imagen a la nube...");
-    
-    // Limpiar nombre de archivo
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 9)}.${fileExt}`;
+    const originalKB = Math.round(file.size / 1024);
+    const toastId = toast.loading(`Convirtiendo imagen a WebP (${originalKB}KB)...`);
 
     try {
+      // Convertir a WebP automáticamente (funciona con HEIC, JPG, PNG, AVIF, etc.)
+      const webpBlob = await convertToWebP(file, 800, 0.82);
+      const convertedKB = Math.round(webpBlob.size / 1024);
+      const saving = Math.round((1 - webpBlob.size / file.size) * 100);
+
+      toast.loading(`Subiendo imagen optimizada (${convertedKB}KB, −${saving}%)...`, { id: toastId });
+
+      // Nombre de archivo siempre con extensión .webp
+      const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 9)}.webp`;
+
       const { error: uploadError } = await supabase.storage
         .from('products')
-        .upload(fileName, file);
+        .upload(fileName, webpBlob, { contentType: 'image/webp' });
 
       if (uploadError) throw uploadError;
 
       const { data } = supabase.storage.from('products').getPublicUrl(fileName);
       
       setFormData({ ...formData, image: data.publicUrl });
-      toast.success("¡Imagen subida y enlazada correctamente!", { id: toastId });
+      toast.success(`✅ Imagen subida: ${originalKB}KB → ${convertedKB}KB (−${saving}% más ligera)`, { id: toastId });
     } catch (error: any) {
       console.error(error);
-      toast.error("Error al subir imagen: " + error.message, { id: toastId });
+      toast.error("Error al procesar imagen: " + error.message, { id: toastId });
     } finally {
       setIsUploading(false);
     }
