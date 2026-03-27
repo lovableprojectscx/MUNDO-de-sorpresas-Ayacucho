@@ -68,14 +68,14 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-300 ${
           isScrolled && !isOpen
-            ? "bg-background/85 backdrop-blur-md shadow-sm py-3 border-b border-border"
+            ? "bg-background/90 backdrop-blur-md shadow-sm py-3 border-b border-border"
             : "bg-transparent py-5"
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl flex items-center justify-between">
-          <Link to="/" className="flex items-center relative z-50 group" onClick={() => setIsOpen(false)}>
+          <Link to="/" className="flex items-center relative z-[110] group" onClick={() => setIsOpen(false)}>
             <img
               src="/logo-mundo-sorpresas.webp"
               alt="Mundo de Sorpresas Ayacucho"
@@ -107,17 +107,17 @@ const Navbar = () => {
 
           {/* Toggle hamburguesa */}
           <button
-            className="lg:hidden relative z-50 p-2 -mr-2 text-foreground"
+            className={`lg:hidden relative z-[120] p-2 -mr-2 outline-none transition-colors ${isOpen ? "text-white" : "text-foreground"}`}
             onClick={() => setIsOpen((v) => !v)}
             aria-label="Toggle Menu"
             aria-expanded={isOpen}
           >
-            {/* CSS transition en vez de framer-motion para el ícono */}
+            {/* CSS transition en vez de framer-motion para evitar layouts extraños */}
             <span
-              className="block transition-all duration-200"
-              style={{ transform: isOpen ? "rotate(45deg)" : "none" }}
+              className="block transition-transform duration-300"
+              style={{ transform: isOpen ? "rotate(90deg)" : "none" }}
             >
-              {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+              {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
             </span>
           </button>
         </div>
