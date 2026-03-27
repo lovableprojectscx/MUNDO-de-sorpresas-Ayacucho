@@ -196,8 +196,8 @@ const AdminPage = () => {
         </Button>
       </div>
 
-      {/* Tabla/Grid de Productos */}
-      <div className="max-w-6xl mx-auto bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
+      {/* Vista Desktop (Tabla) */}
+      <div className="hidden md:block max-w-6xl mx-auto bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted text-muted-foreground uppercase font-semibold text-xs border-b border-border">
@@ -254,6 +254,52 @@ const AdminPage = () => {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Vista Mobile (Tarjetas Táctiles) */}
+      <div className="md:hidden max-w-6xl mx-auto space-y-4">
+        {products.map((product) => (
+          <div key={product.id} className="bg-card border border-border rounded-xl p-4 flex flex-col gap-4 shadow-sm relative overflow-hidden">
+            <div className="flex items-start gap-4">
+               <img src={product.image} alt={product.title} className="w-20 h-20 rounded-xl object-cover border border-border shadow-sm" />
+               <div className="flex-1 min-w-0">
+                 <p className="font-bold text-foreground text-[15px] leading-tight mb-1">{product.title}</p>
+                 <p className="text-[11px] text-muted-foreground uppercase font-semibold tracking-wider mb-2">{product.category.join(", ")}</p>
+                 <span className={`px-2 py-0.5 rounded-md text-xs font-bold ${product.stock.includes("Disponible") ? "bg-accent/15 text-accent" : "bg-muted text-muted-foreground"}`}>
+                    {product.stock}
+                 </span>
+               </div>
+            </div>
+            
+            <div className="flex justify-between items-center bg-muted/40 p-3 rounded-lg border border-border/60">
+              <div className="flex flex-col">
+                <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider mb-0.5">Precio</span>
+                <span className="font-bold text-foreground text-sm">S/ {product.price}</span>
+              </div>
+              
+              {product.offerPrice && (
+                <div className="flex flex-col items-end">
+                  <span className="text-[10px] text-secondary uppercase font-bold tracking-wider mb-0.5 flex items-center gap-1"><Tag className="w-3 h-3"/> Oferta</span>
+                  <span className="font-bold text-secondary text-base">S/ {product.offerPrice}</span>
+                </div>
+              )}
+            </div>
+            
+            <div className="flex justify-end gap-2 pt-2 border-t border-border/40 mt-1">
+              <Button variant="outline" size="sm" onClick={() => openEdit(product)} className="flex-1 text-primary border-primary/20 hover:bg-primary/10 h-9 font-semibold text-xs">
+                <Pencil className="w-3.5 h-3.5 mr-2" /> Editar
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => handleDelete(product.id)} className="flex-1 text-destructive border-destructive/20 hover:bg-destructive/10 h-9 font-semibold text-xs">
+                <Trash2 className="w-3.5 h-3.5 mr-2" /> Eliminar
+              </Button>
+            </div>
+          </div>
+        ))}
+        {products.length === 0 && (
+          <div className="text-center py-12 text-muted-foreground bg-card border border-border rounded-xl px-4">
+            No hay productos en el catálogo. ¡Agrega tu primera sorpresa!
+          </div>
+        )}
       </div>
 
       {/* Modal / Dialog Custom Minimalista (No usando Shadcn estricto para tener control total de la animación de panel lateral o modal flotante grueso) */}
