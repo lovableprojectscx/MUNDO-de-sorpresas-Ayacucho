@@ -41,14 +41,15 @@ const CatalogPage = () => {
           <img 
             src="/portada-catalogo-ayacucho.webp"
             alt="Mundo de Sorpresas Ayacucho" 
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-cover"
             fetchPriority="high"
             decoding="sync"
             loading="eager"
           />
-          {/* Overlay claro para mantener consistencia con el inicio */}
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-[1px]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-white/30" />
+          {/* Overlay para garantizar lectura perfecta del texto oscuro en cualquier foto */}
+          <div className="absolute inset-0 bg-white/50 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-white/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent" />
         </div>
 
         {/* Floating particles - subtle accent */}
@@ -76,23 +77,19 @@ const CatalogPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl mx-auto bg-white/40 backdrop-blur-md border border-white/60 rounded-[1rem] sm:rounded-[1.5rem] p-4 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.05)] relative overflow-hidden"
+            className="max-w-3xl mx-auto relative z-10 px-2"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/40 to-transparent pointer-events-none" />
-            
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/80 border border-white shadow-sm mb-3 sm:mb-6">
-                <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-gold" />
-                <span className="text-[9px] sm:text-xs font-body text-slate-800 font-bold uppercase tracking-[0.2em]">Sorpresas para cada momento</span>
-              </div>
-
-              <h1 className="font-display text-xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1 sm:mb-2 drop-shadow-sm leading-tight">
-                Regalos a Domicilio en <span className="text-primary drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]">Ayacucho</span>
-              </h1>
-              <h2 className="font-body text-xs sm:text-lg md:text-xl text-slate-700 font-medium max-w-2xl mx-auto leading-snug sm:leading-relaxed px-2">
-                Explora el catálogo exclusivo de ramos, chocolates y desayunos sorpresa. ¡Haz su día inolvidable!
-              </h2>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md shadow-sm mb-4 sm:mb-6 border border-white">
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+              <span className="text-[10px] sm:text-xs font-body text-slate-800 font-bold uppercase tracking-[0.2em]">Sorpresas para cada momento</span>
             </div>
+
+            <h1 className="font-display text-4xl text-balance sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-800 mb-3 sm:mb-5 drop-shadow-md leading-tight">
+              Regalos a Domicilio en <span className="text-primary drop-shadow-[0_2px_4px_rgba(236,72,153,0.3)]">Ayacucho</span>
+            </h1>
+            <h2 className="font-body text-sm sm:text-lg md:text-xl text-slate-700 font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-sm text-balance">
+              Explora el catálogo exclusivo de ramos, chocolates y desayunos sorpresa. ¡Haz su día inolvidable!
+            </h2>
           </motion.div>
         </div>
 
