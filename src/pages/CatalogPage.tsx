@@ -35,7 +35,7 @@ const CatalogPage = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Epic Header - Clean & Immersive Version (Match Hero light theme) */}
-      <div className="relative overflow-hidden flex flex-col items-center justify-center pt-20 pb-16 sm:pt-24 sm:pb-24 px-4 bg-background">
+      <div className="relative overflow-hidden flex flex-col items-center justify-center pt-16 pb-8 sm:pt-24 sm:pb-20 px-4 bg-background">
         {/* Background Image - High Impact & Visibility */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -76,7 +76,7 @@ const CatalogPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto bg-white/60 backdrop-blur-md border border-white/80 rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative overflow-hidden"
+            className="max-w-4xl mx-auto bg-white/60 backdrop-blur-md border border-white/80 rounded-[1.5rem] sm:rounded-[2.5rem] p-4 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-white/40 to-transparent pointer-events-none" />
             
@@ -86,10 +86,10 @@ const CatalogPage = () => {
                 <span className="text-[9px] sm:text-xs font-body text-slate-800 font-bold uppercase tracking-[0.2em]">Sorpresas para cada momento</span>
               </div>
 
-              <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-800 mb-2 sm:mb-6 drop-shadow-sm leading-tight">
+              <h1 className="font-display text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-800 mb-2 sm:mb-6 drop-shadow-sm leading-tight">
                 Regalos a Domicilio en <span className="text-primary drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]">Ayacucho</span>
               </h1>
-              <h2 className="font-body text-sm sm:text-lg md:text-xl text-slate-700 font-medium max-w-2xl mx-auto leading-snug sm:leading-relaxed px-2">
+              <h2 className="font-body text-xs sm:text-lg md:text-xl text-slate-700 font-medium max-w-2xl mx-auto leading-snug sm:leading-relaxed px-2">
                 Explora el catálogo exclusivo de ramos, chocolates y desayunos sorpresa. ¡Haz su día inolvidable!
               </h2>
             </div>
