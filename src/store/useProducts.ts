@@ -16,17 +16,27 @@ export interface Product {
 }
 
 // Convertidor de Snake_case (DB) a CamelCase (Frontend)
-const mapProductFromDB = (data: any): Product => ({
-  id: data.id,
-  title: data.title,
-  price: data.price,
-  offerPrice: data.offer_price != null ? data.offer_price : undefined,
-  category: data.category || [],
-  stock: data.stock,
-  image: data.image,
-  description: data.description || "",
-  rating: data.rating,
-});
+const mapProductFromDB = (data: any): Product => {
+  // INTECEPTOR DE OPTIMIZACIÓN LCP:
+  // Si la BD devuelve un archivo pesado antiguo (.png/.jpg) local,
+  // forzamos al frontend a solicitar la versión WebP optimizada.
+  let optimizedImage = data.image;
+  if (optimizedImage && optimizedImage.startsWith('/') && !optimizedImage.endsWith('.webp')) {
+    optimizedImage = optimizedImage.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+  }
+
+  return {
+    id: data.id,
+    title: data.title,
+    price: data.price,
+    offerPrice: data.offer_price != null ? data.offer_price : undefined,
+    category: data.category || [],
+    stock: data.stock,
+    image: optimizedImage,
+    description: data.description || "",
+    rating: data.rating,
+  };
+};
 
 class ProductStore {
   private products: Product[] = [];
