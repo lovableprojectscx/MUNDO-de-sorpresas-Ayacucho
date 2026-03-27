@@ -125,11 +125,11 @@ const GallerySection = () => {
           {videoLinks.map((link, i) => (
             <motion.div
               key={i}
-              className="flex-shrink-0 snap-center w-[280px] sm:w-[320px] rounded-2xl overflow-hidden shadow-card hover-lift bg-card border border-border"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              className="flex-shrink-0 snap-center w-[280px] sm:w-[320px] rounded-2xl overflow-hidden shadow-card bg-card border border-border"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.08 }}
             >
               <OptimizedVideoCard url={link} />
             </motion.div>

@@ -21,7 +21,7 @@ const HeroSection = () => {
           decoding="sync"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-white/15" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-white/30" />
       </div>
 
