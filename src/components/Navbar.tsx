@@ -82,6 +82,8 @@ const Navbar = () => {
               className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
               fetchPriority="high"
               decoding="async"
+              width={300}
+              height={100}
             />
           </Link>
 
