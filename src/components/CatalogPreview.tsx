@@ -3,6 +3,7 @@ import { Sparkles, ArrowRight, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useProducts } from "@/store/useProducts";
 import { MessageCircle } from "lucide-react";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 
 const WHATSAPP_BASE = "https://wa.me/51931489389";
 
@@ -62,14 +63,12 @@ const CatalogPreview = () => {
                 transition={{ delay: i * 0.15 }}
               >
                 <div className="relative overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={product.image}
                     alt={product.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                    width={800}
-                    height={800}
-                    onError={(e) => (e.currentTarget.src = '/placeholder.svg')}
+                    width={400}
+                    height={400}
                   />
                   {product.offerPrice && (
                     <span className="absolute top-2 right-2 flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-secondary/90 backdrop-blur-md text-white text-[10px] sm:text-xs font-body font-bold shadow-sm">

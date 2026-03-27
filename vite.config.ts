@@ -26,10 +26,11 @@ export default defineConfig(({ mode }) => ({
     chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
-        // Split vendor libraries into separate cacheable chunks
+        // Split vendor libraries into separate cacheable chunks to avoid TBT (Total Blocking Time)
         manualChunks: {
           "vendor-react": ["react", "react-dom", "react-router-dom"],
-          "vendor-ui": ["framer-motion", "lucide-react"],
+          "vendor-framer": ["framer-motion"],
+          "vendor-lucide": ["lucide-react"],
           "vendor-supabase": ["@supabase/supabase-js"],
           "vendor-radix": [
             "@radix-ui/react-dialog",

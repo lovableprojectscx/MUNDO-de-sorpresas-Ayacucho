@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, Tag, Sparkles, Heart, ArrowLeft, Star, Cake, Gem, Flame } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useProducts, Product, Category } from "@/store/useProducts";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 
 const WHATSAPP_BASE = "https://wa.me/51931489389";
 
@@ -155,15 +156,12 @@ const CatalogPage = () => {
               >
                 {/* Image */}
                 <div className="relative overflow-hidden aspect-[4/5] sm:aspect-[4/3]">
-                   <motion.img
+                   <OptimizedImage
                     src={product.image}
                     alt={product.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                    decoding="async"
-                    width={800}
-                    height={800}
-                    onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/800x600?text=Imagen+No+Disponible')}
+                    width={400}
+                    height={400}
                   />
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
@@ -261,14 +259,13 @@ const CatalogPage = () => {
               transition={{ type: "spring", damping: 25 }}
             >
               <div className="relative">
-                <img
+                <OptimizedImage
                   src={selectedProduct.image}
                   alt={selectedProduct.title}
                   className="w-full h-72 object-cover"
-                  loading="lazy"
-                  decoding="async"
-                  width={800}
-                  height={800}
+                  width={600}
+                  height={600}
+                  priority={true}
                 />
                 <button
                   onClick={() => setSelectedProduct(null)}
