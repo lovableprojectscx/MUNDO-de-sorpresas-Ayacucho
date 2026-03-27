@@ -69,6 +69,8 @@ const ServicesSection = () => {
                   className="relative z-10 w-auto h-[95%] object-contain object-bottom drop-shadow-[0_20px_20px_rgba(0,0,0,0.12)] transition-all duration-700 ease-out group-hover:scale-[1.05] origin-bottom"
                   loading="lazy"
                   decoding="async"
+                  width={600}
+                  height={600}
                 />
               </div>
 
