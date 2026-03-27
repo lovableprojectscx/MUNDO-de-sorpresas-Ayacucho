@@ -53,7 +53,7 @@ const AdminPage = () => {
         >
           <div className="flex justify-center mb-6">
             <img 
-              src="/logo-mundo-sorpresas.png" 
+              src="/logo-mundo-sorpresas.webp" 
               alt="Logo Mundo de Sorpresas" 
               className="h-20 sm:h-24 w-auto object-contain drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]"
             />
