@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mundodesorpresasayacucho.com/sitemap.xml
+Sitemap: https://www.mundo-de-sorpresas-ayacucho.com/sitemap.xml
