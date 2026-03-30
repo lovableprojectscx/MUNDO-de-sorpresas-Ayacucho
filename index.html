@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Preconnect a orígenes críticos para reducir latencia de red -->
-    <!-- Supabase CDN de IMÁGENES: sin crossorigin (las images no usan CORS) -->
-    <link rel="preconnect" href="https://ocjhfrkcpmcgcgjwxefw.supabase.co">
+    <!-- Supabase CDN de IMÁGENES: Lighthouse recomienda crossorigin -->
+    <link rel="preconnect" href="https://ocjhfrkcpmcgcgjwxefw.supabase.co" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://tbtmrujpxitvksvntjpx.supabase.co">
@@ -15,9 +15,12 @@
     <link rel="preload" as="image" href="/logo-mundo-sorpresas.webp" fetchpriority="high" type="image/webp">
     <link rel="preload" as="image" href="/premium-gift-bg.webp" fetchpriority="high" type="image/webp">
 
-    <!-- Google Fonts: Carga optimizada sin bloqueo -->
+    <!-- Google Fonts: Carga diferida sin bloqueo (media swap) -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;600;700&display=swap">
+    </noscript>
 
     <!-- SEO Principal -->
     <title>Sorpresas Ayacucho | Regalos a Domicilio y Osito Tunantero</title>

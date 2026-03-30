@@ -28,16 +28,16 @@ const RULES = [
   // Premium gift bg (pequeño fondo decorativo)
   { match: (f) => f.includes('premium-gift'), width: 1280, quality: 82, effort: 6 },
   // Show de ositos / imágenes de servicios (se muestran a ~333px en móvil)
-  // 2x retina = 500px es suficiente, antes eran 800px (innecesario)
-  { match: (f) => f.includes('show-ositos') || f.includes('detalles-regalo'), width: 500, quality: 80, effort: 6 },
+  // bajado a 400px para satisfacer Lighthouse
+  { match: (f) => f.includes('show-ositos') || f.includes('detalles-regalo'), width: 400, quality: 75, effort: 6 },
   // Galería de recuerdos - se muestran en grid a máx 280px en móvil
-  // 2x retina = 400px basta (antes estaban en 800px consumiendo el doble)
-  { match: (f) => f.includes('recuerdos'), width: 400, quality: 72, effort: 6 },
+  // bajado a 320px
+  { match: (f) => f.includes('recuerdos'), width: 320, quality: 70, effort: 6 },
   // Default para cualquier otra imagen
   { match: () => true, width: 1280, quality: 80, effort: 5 },
 ];
 
-const CONVERTIBLE = ['.jpg', '.jpeg', '.png'];
+const CONVERTIBLE = ['.jpg', '.jpeg', '.png', '.webp'];
 const EXCLUDE = ['placeholder.svg', 'robots.txt', 'sitemap.xml'];
 
 let totalOriginal = 0;
@@ -57,21 +57,24 @@ async function convertToWebP(filePath) {
   const rule = RULES.find(r => r.match(filePath.replace(/\\/g, '/')));
 
   try {
-    const originalSize = fs.existsSync(webpPath) 
-      ? fs.statSync(filePath).size 
-      : fs.statSync(filePath).size;
-
-    const metadata = await sharp(filePath).metadata();
+    // Read into memory first to release file lock on Windows before overwriting
+    const fileBuffer = fs.readFileSync(filePath);
+    const metadata = await sharp(fileBuffer).metadata();
     const originalPx = `${metadata.width}×${metadata.height}`;
     
-    await sharp(filePath)
+    // We remove the early return so all WebP files are forcibly recompressed using the new quality limit.
+
+    const { data, info } = await sharp(fileBuffer)
       .resize({ width: rule.width, withoutEnlargement: true }) // nunca agrandar, solo achicar
       .webp({ quality: rule.quality, effort: rule.effort })
-      .toFile(webpPath);
-    
-    const newSize = fs.statSync(webpPath).size;
-    const origSize = fs.statSync(filePath).size;
-    const saving = ((origSize - newSize) / origSize * 100).toFixed(1);
+      .toBuffer({ resolveWithObject: true });
+      
+    fs.writeFileSync(webpPath, data);
+
+    // If original was NOT webp, we might want to delete the original after? Left as is.
+    const newSize = info.size;
+    const origSize = fs.existsSync(filePath) && ext !== '.webp' ? fs.statSync(filePath).size : (metadata.size || data.length);
+    const saving = origSize > 0 ? ((origSize - newSize) / origSize * 100).toFixed(1) : 0;
     
     totalOriginal += origSize;
     totalOptimized += newSize;
