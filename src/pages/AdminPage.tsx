@@ -16,6 +16,7 @@ const AdminPage = () => {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [hasOffer, setHasOffer] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isUploading, setIsUploading] = useState(false);
 
@@ -35,20 +36,23 @@ const AdminPage = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === "ayacucho2026") {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: 'admin.sorpresas@gmail.com',
-        password: 'ayacucho2026'
-      });
-      if (error) {
-        toast.error("Error validando backend: " + error.message);
-        return;
-      }
-      setIsAuthenticated(true);
-      toast.success("Acceso concedido");
-    } else {
-      toast.error("Contraseña incorrecta");
+    if (!email || !password) {
+      toast.error("Por favor ingresa tu correo y contraseña");
+      return;
     }
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
+    
+    if (error) {
+      toast.error("Credenciales incorrectas: " + error.message);
+      return;
+    }
+    
+    setIsAuthenticated(true);
+    toast.success("Acceso concedido");
   };
 
   if (!isAuthenticated) {
@@ -67,16 +71,23 @@ const AdminPage = () => {
             />
           </div>
           <h1 className="font-display text-3xl font-bold text-white mb-2">Panel Administrativo</h1>
-          <p className="text-white/60 mb-8">Ingresa la clave maestra para gestionar el catálogo</p>
+          <p className="text-white/60 mb-8">Ingresa tus credenciales de Mype para gestionar el catálogo</p>
           
           <form onSubmit={handleLogin} className="space-y-4">
+            <Input 
+              type="email"
+              placeholder="Correo electrónico"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="bg-white/5 border-white/10 text-white h-12 rounded-xl text-center text-base"
+              autoFocus
+            />
             <Input 
               type="password"
               placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="bg-white/5 border-white/10 text-white h-12 rounded-xl text-center text-lg tracking-widest"
-              autoFocus
             />
             <Button type="submit" className="w-full h-12 rounded-xl bg-primary text-primary-foreground font-bold hover:scale-[1.02] transition-transform">
               Entrar al Sistema
