@@ -66,9 +66,11 @@ class ProductStore {
 
   // Cargar de BD
   async fetchProducts() {
+    const tenantId = import.meta.env.VITE_TENANT_ID;
     const { data, error } = await supabase
       .from('products')
       .select('*')
+      .eq('tenant_id', tenantId)
       .order('created_at', { ascending: false });
 
     if (error) {
@@ -92,9 +94,11 @@ class ProductStore {
     this.emit();
 
     // Backend real update
+    const tenantId = import.meta.env.VITE_TENANT_ID;
     const { data, error } = await supabase
       .from('products')
       .insert([{
+        tenant_id: tenantId,
         title: product.title,
         price: product.price,
         offer_price: product.offerPrice || null,
@@ -139,7 +143,8 @@ class ProductStore {
     const { error } = await supabase
       .from('products')
       .update(payload)
-      .eq('id', id);
+      .eq('id', id)
+      .eq('tenant_id', import.meta.env.VITE_TENANT_ID);
 
     if (error) {
        console.error(error);
@@ -158,7 +163,8 @@ class ProductStore {
     const { error } = await supabase
       .from('products')
       .delete()
-      .eq('id', id);
+      .eq('id', id)
+      .eq('tenant_id', import.meta.env.VITE_TENANT_ID);
 
     if (error) {
        console.error(error);

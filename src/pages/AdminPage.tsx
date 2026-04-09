@@ -33,9 +33,17 @@ const AdminPage = () => {
 
   const categories: Category[] = ["Todo", "Para Parejas", "Cumpleaños", "Aniversarios", "Ofertas"];
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password === "ayacucho2026") {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: 'admin.sorpresas@gmail.com',
+        password: 'ayacucho2026'
+      });
+      if (error) {
+        toast.error("Error validando backend: " + error.message);
+        return;
+      }
       setIsAuthenticated(true);
       toast.success("Acceso concedido");
     } else {
