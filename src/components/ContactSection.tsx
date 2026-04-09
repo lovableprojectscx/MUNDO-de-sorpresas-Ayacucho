@@ -41,6 +41,23 @@ const ContactSection = () => {
             </div>
 
             <div className="flex items-center gap-5">
+              <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-6 h-6 text-accent" />
+              </div>
+              <div>
+                <p className="font-display font-bold text-foreground text-lg">Nuestra Dirección</p>
+                <a
+                  href="https://www.google.com/maps/search/Jr.+9+de+Diciembre+333+Ayacucho+Peru"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-body text-base text-muted-foreground hover:text-primary transition-colors underline underline-offset-2"
+                >
+                  Jr. 9 de Diciembre con Mariscal Cáceres N° 333 (interior) — Ayacucho
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-5">
               <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center flex-shrink-0">
                 <Music className="w-6 h-6 text-gold" />
               </div>
@@ -48,6 +65,19 @@ const ContactSection = () => {
                 <p className="font-display font-bold text-foreground text-lg">Show en Vivo</p>
                 <p className="font-body text-base text-muted-foreground">Matrimonios, Cumpleaños y eventos especiales en todo Ayacucho.</p>
               </div>
+            </div>
+
+            {/* Mapa embebido */}
+            <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm w-full h-48">
+              <iframe
+                title="Ubicación Mundo de Sorpresas Ayacucho"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-74.2260%2C-13.1650%2C-74.2140%2C-13.1560&layer=mapnik&marker=-13.1606%2C-74.2204"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+              />
             </div>
 
             {/* Social Icons Compact */}
