@@ -6,73 +6,88 @@ const HeroSection = () => {
   return (
     <section 
       id="inicio"
-      className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-background"
-      style={{ clipPath: "polygon(0 0, 100% 0, 100% 90%, 0 100%)", paddingBottom: "10vh" }}
+      className="relative min-h-[90svh] sm:min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-black"
     >
-      {/* Background Image */}
+      {/* Background Image with Dark Professional Overlay */}
       <div className="absolute inset-0">
         <img
           src="/fondo-principal-ayacucho.webp"
-          alt="Mundo de Sorpresas Ayacucho - Regalos y Detalles Personalizados Premium"
-          className="w-full h-full object-cover scale-105"
+          alt="Mundo de Sorpresas Ayacucho - Regalos Premium"
+          className="w-full h-full object-cover opacity-80"
           width={1920}
           height={1080}
           fetchPriority="high"
           decoding="sync"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-white/15" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-white/30" />
+        {/* Gradiente oscuro para dar firmeza y legibilidad premium */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-5 sm:px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto w-full flex flex-col items-center justify-center pt-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="flex flex-col items-center justify-center w-full"
         >
+          {/* Pequeño tag superior elegante */}
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-white/60 shadow-[0_4px_15px_rgba(0,0,0,0.05)] mb-6 sm:mb-8"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
+            className="inline-flex items-center gap-2 mb-6 sm:mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
           >
-            <Gift className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
-            <span className="text-xs sm:text-sm font-body font-bold text-foreground/90 uppercase tracking-[0.15em]">Sorpresas que llegan al corazón</span>
+            <div className="h-[1px] w-8 sm:w-12 bg-primary/80" />
+            <span className="text-[10px] sm:text-xs font-display font-medium text-white/90 uppercase tracking-[0.3em]">
+              Sorpresas Inolvidables
+            </span>
+            <div className="h-[1px] w-8 sm:w-12 bg-primary/80" />
           </motion.div>
 
-          <h1 className="mb-6 md:mb-10 w-full flex justify-center">
-            <span className="sr-only">Sorpresas Ayacucho - Regalos a Domicilio y Osito Tunantero</span>
+          {/* Logo principal */}
+          <div className="mb-8 w-full flex justify-center">
+            <span className="sr-only">Sorpresas Ayacucho</span>
             <img 
               src="/logo-mundo-sorpresas.webp" 
-              alt="Mundo de Sorpresas Ayacucho Logo Principal - Envíos a Domicilio" 
-              className="w-[85%] sm:w-auto h-auto sm:h-40 md:h-56 lg:h-64 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:scale-[1.02] transition-transform duration-500"
+              alt="Mundo de Sorpresas Ayacucho Logo" 
+              className="w-[85%] sm:w-auto h-auto sm:h-36 md:h-44 lg:h-52 object-contain drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]"
               fetchPriority="high"
               loading="eager"
               width={600}
               height={256}
             />
-          </h1>
-
-          <div className="max-w-3xl mx-auto bg-white/60 backdrop-blur-md border border-white/80 rounded-3xl p-6 md:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.05)] mb-8 sm:mb-10 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/40 to-transparent pointer-events-none" />
-            <h2 className="font-body text-lg sm:text-xl md:text-2xl text-slate-800 font-bold leading-relaxed relative z-10">
-              Las mejores <strong className="text-primary drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]">Sorpresas y Regalos en Ayacucho</strong> a domicilio. Haz que su día sea inolvidable con el exclusivo show del <strong className="text-amber-600 drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)] break-words">Osito Tunantero</strong>.
-            </h2>
           </div>
 
+          {/* Texto de propuesta de valor Firme y Elegante */}
+          <div className="max-w-3xl mx-auto mb-10 sm:mb-12">
+            <h1 className="font-display text-2xl sm:text-3xl md:text-5xl text-white font-bold leading-tight mb-4 drop-shadow-xl text-balance">
+              Expertos en <span className="text-primary">Regalos a Domicilio</span> en Ayacucho
+            </h1>
+            <p className="font-body text-base sm:text-lg text-gray-300 font-light max-w-2xl mx-auto text-balance leading-relaxed">
+              Expresa tus sentimientos con calidad. Entregamos detalles exclusivos y el reconocido show del Osito Tunantero directo a su puerta.
+            </p>
+          </div>
+
+          {/* CTA Botón sólido y profesional */}
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
             <Link
               to="/catalogo"
-              className="inline-flex items-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 rounded-full gradient-cta text-accent-foreground font-body font-semibold text-base sm:text-lg shadow-cta hover:scale-105 transition-transform duration-300"
+              className="inline-flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 rounded-full bg-primary text-white font-body font-semibold text-sm sm:text-base border border-primary/50 shadow-[0_0_30px_rgba(236,72,153,0.3)] hover:shadow-[0_0_40px_rgba(236,72,153,0.5)] hover:bg-primary/90 transition-all duration-300"
             >
-              <Gift className="w-4 h-4 sm:w-5 sm:h-5" />
-              Descubre Nuestras Sorpresas
+              <Gift className="w-5 h-5" />
+              Ver Catálogo Completo
             </Link>
           </motion.div>
         </motion.div>
+      </div>
 
+      {/* Decorative Wave at the bottom to transition cleanly */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden flex items-end">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-[calc(100%+2px)] h-[40px] sm:h-[60px] md:h-[80px]">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,120.4,192.8,107.5,236.4,98.54,281.39,70.56,321.39,56.44Z" className="fill-background" />
+        </svg>
       </div>
     </section>
   );
