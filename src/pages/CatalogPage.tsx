@@ -155,7 +155,7 @@ const CatalogPage = () => {
                 onClick={() => setSelectedProduct(product)}
               >
                 {/* Image */}
-                <div className="relative overflow-hidden aspect-[4/5] sm:aspect-[4/3]">
+                <div className="relative overflow-hidden aspect-square sm:aspect-[4/3]">
                    <OptimizedImage
                     src={product.image}
                     alt={product.title}

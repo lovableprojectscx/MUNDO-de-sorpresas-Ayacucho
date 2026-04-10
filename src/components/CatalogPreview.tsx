@@ -62,7 +62,7 @@ const CatalogPreview = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
               >
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden aspect-square">
                   <OptimizedImage
                     src={product.image}
                     alt={product.title}
