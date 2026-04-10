@@ -94,14 +94,20 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="font-body text-sm font-medium transition-colors hover:text-accent text-foreground"
+                className={`font-body text-sm font-medium transition-colors hover:text-gold ${
+                  isScrolled ? "text-foreground" : "text-white drop-shadow-md"
+                }`}
               >
                 {link.name}
               </a>
             ))}
             <Link
               to="/catalogo"
-              className="px-6 py-2.5 rounded-full font-body text-sm font-bold bg-primary text-primary-foreground shadow-md hover:bg-primary/90 transition-colors"
+              className={`px-6 py-2.5 rounded font-body text-sm font-bold shadow-md transition-colors ${
+                isScrolled
+                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                  : "bg-white text-black hover:bg-gray-100"
+              }`}
             >
               Ver Catálogo
             </Link>
@@ -109,7 +115,9 @@ const Navbar = () => {
 
           {/* Toggle hamburguesa */}
           <button
-            className={`lg:hidden relative z-[120] p-2 -mr-2 outline-none transition-colors ${isOpen ? "text-white" : "text-foreground"}`}
+            className={`lg:hidden relative z-[120] p-2 -mr-2 outline-none transition-colors ${
+              isOpen || !isScrolled ? "text-white drop-shadow-md" : "text-foreground"
+            }`}
             onClick={() => setIsOpen((v) => !v)}
             aria-label="Toggle Menu"
             aria-expanded={isOpen}

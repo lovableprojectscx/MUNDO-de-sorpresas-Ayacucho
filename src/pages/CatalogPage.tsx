@@ -22,7 +22,18 @@ const CatalogPage = () => {
   const [active, setActive] = useState<Category>("Todo");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const filtered = active === "Todo" ? products : products.filter(p => p.category.includes(active));
+  const ObjectValuesToString = (categoryStr: any) => {
+    if (!categoryStr) return "";
+    return Array.isArray(categoryStr) ? categoryStr.join(",") : String(categoryStr);
+  };
+
+  const filtered = active === "Todo" 
+    ? products 
+    : products.filter(p => {
+        const catStr = ObjectValuesToString(p.category);
+        // Mostrar si pertenece a la categoría activa O si fue marcado como "Todo" (universal)
+        return catStr.includes(active) || catStr.includes("Todo");
+      });
 
   const getWhatsappLink = (name: string) =>
     `${WHATSAPP_BASE}?text=${encodeURIComponent(`Hola Mundo Sorpresas, quiero info sobre el producto: ${name}`)}`;
@@ -35,96 +46,55 @@ const CatalogPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Epic Header - Clean & Immersive Version (Match Hero light theme) */}
-      <div className="relative overflow-hidden flex flex-col items-center justify-center pt-12 pb-4 sm:pt-14 sm:pb-6 px-4 bg-background">
-        {/* Background Image - High Impact & Visibility */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/portada-catalogo-ayacucho.webp"
-            alt="Mundo de Sorpresas Ayacucho" 
-            className="w-full h-full object-cover"
-            fetchPriority="high"
-            decoding="sync"
-            loading="eager"
-          />
-          {/* Overlay para garantizar lectura perfecta del texto oscuro en cualquier foto */}
-          <div className="absolute inset-0 bg-white/50 backdrop-blur-[2px]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-white/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent" />
-        </div>
-
-        {/* Floating particles - subtle accent */}
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full bg-white/30"
-            style={{ left: `${20 + i * 15}%`, top: `${30 + (i % 2) * 20}%` }}
-            animate={{ y: [-15, 15, -15], opacity: [0.2, 0.5, 0.2] }}
-            transition={{ duration: 3 + i, repeat: Infinity }}
-          />
-        ))}
-
-        {/* Content - Centered & Clean */}
-        <div className="relative z-10 container max-w-4xl mx-auto text-center pt-2 sm:pt-10">
+      {/* Header Ultra Minimalista y Elegante */}
+      <div className="relative pt-6 pb-4 sm:pb-6 px-4 bg-background overflow-hidden">
+        {/* Toques sutiles de color difuminado (Premium Aesthetic) */}
+        <div className="absolute top-[-50%] left-[-10%] w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-[-20%] right-[-10%] w-72 h-72 bg-gold/10 rounded-full blur-[80px] pointer-events-none" />
+        
+        <div className="relative z-10 container max-w-6xl mx-auto flex flex-col pt-2">
+          {/* Botón Volver - Estilo Boutique */}
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-slate-800 hover:text-black mb-6 sm:mb-10 font-body transition-all group text-xs sm:text-sm px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/40 hover:bg-white/60 backdrop-blur-md border border-white/40 shadow-sm hover:-translate-y-1"
+            className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground font-body transition-colors text-sm mb-6 sm:mb-8 w-fit group"
           >
-            <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-x-1" />
-            Volver a la tienda
+            <div className="w-8 h-8 rounded-full bg-muted/50 flex items-center justify-center border border-border/50 group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground transition-all duration-300 shadow-sm">
+              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+            </div>
+            Inicio
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto relative z-10 px-2"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md shadow-sm mb-4 sm:mb-6 border border-white">
-              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
-              <span className="text-[10px] sm:text-xs font-body text-slate-800 font-bold uppercase tracking-[0.2em]">Sorpresas para cada momento</span>
-            </div>
-
-            <h1 className="font-display text-4xl text-balance sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-800 mb-3 sm:mb-5 drop-shadow-md leading-tight">
-              Regalos a Domicilio en <span className="text-primary drop-shadow-[0_2px_4px_rgba(236,72,153,0.3)]">Ayacucho</span>
+          {/* Título Directo y Conciso */}
+          <div className="flex items-center gap-3">
+            <Sparkles className="w-6 h-6 text-gold hidden sm:block" />
+            <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-foreground tracking-tight">
+              Catálogo <span className="text-primary italic">Exclusivo</span>
             </h1>
-            <h2 className="font-body text-sm sm:text-lg md:text-xl text-slate-700 font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-sm text-balance">
-              Explora el catálogo exclusivo de ramos, chocolates y desayunos sorpresa. ¡Haz su día inolvidable!
-            </h2>
-          </motion.div>
-        </div>
-
-        {/* Wave Divider */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden flex items-end translate-y-[1px]">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-[calc(100%+2px)] h-[40px] sm:h-[60px] md:h-[80px]">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,120.4,192.8,107.5,236.4,98.54,281.39,70.56,321.39,56.44Z" className="fill-background/90" />
-          </svg>
+          </div>
         </div>
       </div>
 
-      {/* Filters - Sticky */}
-      <div className="sticky top-0 z-20 bg-background/80 backdrop-blur-lg border-b border-border py-4 px-4">
-        <div className="container max-w-6xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((cat, i) => {
+      {/* Filters - Sticky & Minimal */}
+      <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border py-3 shadow-sm">
+        <div className="container max-w-6xl mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-2 relative z-0">
+            {categories.map((cat) => {
               const Icon = categoryIcons[cat];
               return (
-              <motion.button
-                key={cat}
-                onClick={() => setActive(cat)}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-                className={`px-5 py-2.5 rounded-full font-body font-medium text-sm flex items-center justify-center transition-all duration-300 ${
-                  active === cat
-                    ? "gradient-cta text-accent-foreground shadow-cta scale-105"
-                    : "bg-muted text-muted-foreground hover:bg-accent/10 hover:scale-105 border border-border"
-                }`}
-              >
-                <Icon className={`mr-2 w-4 h-4 ${active === cat ? "text-accent-foreground" : "text-muted-foreground"}`} />
-                {cat}
-              </motion.button>
-            )})}
+                <button
+                  key={cat}
+                  onClick={() => setActive(cat)}
+                  className={`px-4 py-2 mt-1 rounded-full font-body font-medium text-sm flex items-center justify-center transition-all duration-200 ${
+                    active === cat
+                      ? "bg-foreground text-background shadow-md border-foreground"
+                      : "bg-transparent text-muted-foreground hover:text-foreground border border-border hover:bg-muted/50"
+                  }`}
+                >
+                  <Icon className={`mr-2 w-4 h-4 ${active === cat ? "text-gold" : "text-muted-foreground"}`} />
+                  {cat}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>

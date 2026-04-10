@@ -1,94 +1,86 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Gift } from "lucide-react";
+import { Gift, ChevronRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
     <section 
       id="inicio"
-      className="relative min-h-[90svh] sm:min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-black"
+      className="relative min-h-[90svh] sm:min-h-[100svh] flex flex-col items-center justify-center overflow-hidden"
     >
       {/* Background Image with Dark Professional Overlay */}
       <div className="absolute inset-0">
         <img
           src="/fondo-principal-ayacucho.webp"
           alt="Mundo de Sorpresas Ayacucho - Regalos Premium"
-          className="w-full h-full object-cover opacity-80"
+          className="w-full h-full object-cover"
           width={1920}
           height={1080}
           fetchPriority="high"
           decoding="sync"
           loading="eager"
         />
-        {/* Gradiente oscuro para dar firmeza y legibilidad premium */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90" />
+        {/* Overlay premium, oscuro y sofisticado */}
+        <div className="absolute inset-0 bg-black/75 backdrop-blur-[2px]" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto w-full flex flex-col items-center justify-center pt-16">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto w-full flex flex-col items-center justify-center pt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col items-center justify-center w-full"
         >
-          {/* Pequeño tag superior elegante */}
+          {/* Tag superior minimalista */}
           <motion.div
-            className="inline-flex items-center gap-2 mb-6 sm:mb-8"
+            className="inline-flex items-center gap-3 mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.3 }}
           >
-            <div className="h-[1px] w-8 sm:w-12 bg-primary/80" />
-            <span className="text-[10px] sm:text-xs font-display font-medium text-white/90 uppercase tracking-[0.3em]">
-              Sorpresas Inolvidables
+            <div className="h-px w-8 sm:w-16 bg-gold-light/60" />
+            <span className="text-[10px] sm:text-xs font-body font-medium text-gold-light uppercase tracking-[0.25em]">
+              Exclusividad en Ayacucho
             </span>
-            <div className="h-[1px] w-8 sm:w-12 bg-primary/80" />
+            <div className="h-px w-8 sm:w-16 bg-gold-light/60" />
           </motion.div>
 
-          {/* Logo principal */}
-          <div className="mb-8 w-full flex justify-center">
-            <span className="sr-only">Sorpresas Ayacucho</span>
-            <img 
-              src="/logo-mundo-sorpresas.webp" 
-              alt="Mundo de Sorpresas Ayacucho Logo" 
-              className="w-[85%] sm:w-auto h-auto sm:h-36 md:h-44 lg:h-52 object-contain drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]"
-              fetchPriority="high"
-              loading="eager"
-              width={600}
-              height={256}
-            />
-          </div>
+          {/* Título Firme y Elegante, sin logo de imagen para máxima limpieza */}
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-white font-bold leading-[1.1] mb-6 drop-shadow-2xl text-balance tracking-tight">
+            Momentos Inolvidables, <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text gradient-gold">Emociones Reales</span>
+          </h1>
 
-          {/* Texto de propuesta de valor Firme y Elegante */}
-          <div className="max-w-3xl mx-auto mb-10 sm:mb-12">
-            <h1 className="font-display text-2xl sm:text-3xl md:text-5xl text-white font-bold leading-tight mb-4 drop-shadow-xl text-balance">
-              Expertos en <span className="text-primary">Regalos a Domicilio</span> en Ayacucho
-            </h1>
-            <p className="font-body text-base sm:text-lg text-gray-300 font-light max-w-2xl mx-auto text-balance leading-relaxed">
-              Expresa tus sentimientos con calidad. Entregamos detalles exclusivos y el reconocido show del Osito Tunantero directo a su puerta.
-            </p>
-          </div>
+          {/* Subtítulo limpio y directo */}
+          <p className="font-body text-base sm:text-lg text-white/80 font-light max-w-2xl mx-auto text-balance leading-relaxed mb-10">
+            Regalos premium a domicilio. Destaca con un detalle de calidad y el exclusivo show del <strong>Osito Tunantero</strong>.
+          </p>
 
-          {/* CTA Botón sólido y profesional */}
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+          {/* CTA Buttons: Estilo profesional y sólido (firmes) */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0">
             <Link
               to="/catalogo"
-              className="inline-flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 rounded-full bg-primary text-white font-body font-semibold text-sm sm:text-base border border-primary/50 shadow-[0_0_30px_rgba(236,72,153,0.3)] hover:shadow-[0_0_40px_rgba(236,72,153,0.5)] hover:bg-primary/90 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded bg-white text-black font-body font-semibold text-sm sm:text-base border border-white transition-all duration-300 hover:bg-gold hover:border-gold hover:text-black shadow-lg hover:shadow-xl"
             >
               <Gift className="w-5 h-5" />
-              Ver Catálogo Completo
+              Ver Colección Premium
             </Link>
-          </motion.div>
+            <a
+              href="https://wa.me/51931489389?text=Hola,%20deseo%20contactar%20a%20un%20asesor%20para%20una%20sorpresa."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded bg-transparent text-white font-body font-medium text-sm sm:text-base border border-white/30 transition-all duration-300 hover:bg-white/10"
+            >
+              Contactar Asesor
+              <ChevronRight className="w-5 h-5" />
+            </a>
+          </div>
         </motion.div>
       </div>
 
-      {/* Decorative Wave at the bottom to transition cleanly */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden flex items-end">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-[calc(100%+2px)] h-[40px] sm:h-[60px] md:h-[80px]">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,120.4,192.8,107.5,236.4,98.54,281.39,70.56,321.39,56.44Z" className="fill-background" />
-        </svg>
-      </div>
+      {/* Degradado inferior para transición suave hacia la otra sección minimalista */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 };
