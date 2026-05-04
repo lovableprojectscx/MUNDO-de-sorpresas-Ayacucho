@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.mundo-de-sorpresas-ayacucho.com/sitemap.xml

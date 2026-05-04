@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 270 30% 98%;
+    --foreground: 270 50% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 270 50% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 270 50% 10%;
+
+    --primary: 280 60% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 330 70% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 270 20% 94%;
+    --muted-foreground: 270 10% 45%;
+
+    --accent: 180 80% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 270 20% 90%;
+    --input: 270 20% 90%;
+    --ring: 280 60% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gold: 40 70% 55%;
+    --gold-light: 40 60% 75%;
+    --pink: 330 70% 55%;
+    --pink-light: 330 60% 85%;
+    --violet: 280 60% 45%;
+    --violet-light: 280 40% 75%;
+    --cyan: 180 80% 45%;
+    --cyan-light: 180 60% 85%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(280 60% 45%), hsl(330 70% 55%), hsl(280 50% 50%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(270 30% 97%));
+    --gradient-cta: linear-gradient(135deg, hsl(180 80% 45%), hsl(180 70% 38%));
+    --gradient-gold: linear-gradient(135deg, hsl(40 70% 55%), hsl(35 80% 45%));
+
+    --shadow-card: 0 8px 32px -8px hsl(280 60% 45% / 0.15);
+    --shadow-hover: 0 16px 48px -12px hsl(280 60% 45% / 0.25);
+    --shadow-cta: 0 4px 20px -4px hsl(180 80% 45% / 0.4);
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-cta {
+    background: var(--gradient-cta);
+  }
+
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-card-hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .shadow-cta {
+    box-shadow: var(--shadow-cta);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(40 70% 55%), hsl(35 80% 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .frame-heart {
+    clip-path: none;
+    border-radius: 1rem;
+    border: 3px solid hsl(var(--pink-light));
+    position: relative;
+  }
+
+  .frame-ribbon {
+    border-radius: 1rem;
+    border: 3px solid hsl(var(--gold-light));
+    position: relative;
+  }
+
+  .confetti-bg {
+    background-image: 
+      radial-gradient(circle at 10% 20%, hsl(var(--pink) / 0.08) 1px, transparent 1px),
+      radial-gradient(circle at 80% 30%, hsl(var(--cyan) / 0.08) 1px, transparent 1px),
+      radial-gradient(circle at 40% 80%, hsl(var(--gold) / 0.08) 1px, transparent 1px),
+      radial-gradient(circle at 90% 70%, hsl(var(--violet) / 0.06) 1px, transparent 1px);
+    background-size: 100px 100px, 150px 120px, 120px 140px, 80px 90px;
+  }
+}
+
+@layer utilities {
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Hide scrollbar for horizontal swipe sections */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
